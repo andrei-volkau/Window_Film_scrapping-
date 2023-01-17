@@ -43,14 +43,16 @@ class DusharaSpider(scrapy.Spider):
         json_loaded = json.loads(response.text)
         for item in json_loaded:
             id_value = item["id"]
-            company_name = item["properties"]["name"]
-            phone = item["properties"]["phone"]
-            website = item["properties"]["website"]
-            state = item["properties"]["state"]
-            item = TutorialItem()
-            item['id_value'] = id_value
-            item['company_name'] = company_name
-            item['website'] = website
-            item['phone'] =phone
-            item['state'] = state
-            yield item
+            country = item["properties"]["country"]
+            if country == "United States":
+                company_name = item["properties"]["name"]
+                phone = item["properties"]["phone"]
+                website = item["properties"]["website"]
+                state = item["properties"]["state"]
+                item = TutorialItem()
+                item['id_value'] = id_value
+                item['company_name'] = company_name
+                item['website'] = website
+                item['phone'] =phone
+                item['state'] = state
+                yield item
