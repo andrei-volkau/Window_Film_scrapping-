@@ -33,7 +33,7 @@ class DusharaSpider(scrapy.Spider):
             url = 'https://iwfa.com/wp-admin/admin-ajax.php'
             codes = list(range(int(first_zip_value), int(second_zip_value)))
             try:
-                random_codes = random.sample(codes, 500)
+                random_codes = random.sample(codes, 200)
             except:
                 random_codes = random.sample(codes, 100)
             for zip_code in random_codes:
