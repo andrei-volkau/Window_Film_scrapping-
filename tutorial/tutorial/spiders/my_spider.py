@@ -19,7 +19,7 @@ headers = {
     'sec-ch-ua-mobile': '?0',
     'sec-ch-ua-platform': '"macOS"',
 }
-INPUT_FILENAME = "data_sample.csv"
+INPUT_FILENAME = "data.csv"
 
 
 class DusharaSpider(scrapy.Spider):
