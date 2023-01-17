@@ -32,7 +32,11 @@ class DusharaSpider(scrapy.Spider):
             second_zip_value = row["4"].split(" to ")[-1]
             url = 'https://iwfa.com/wp-admin/admin-ajax.php'
             codes = list(range(int(first_zip_value), int(second_zip_value)))
-            for zip_code in random.sample(codes, 500):
+            try:
+                random_codes = random.sample(codes, 500)
+            except:
+                random_codes = random.sample(codes, 100)
+            for zip_code in random_codes:
                 yield scrapy.FormRequest(
                     url=url,
                     formdata={"lat": "0", "long": "0", "zip": str(zip_code), "nonce": "c47ae0f2e4", "action": "find_dealers"},
