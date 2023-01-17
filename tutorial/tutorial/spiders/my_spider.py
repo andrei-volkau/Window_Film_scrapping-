@@ -1,6 +1,7 @@
 import scrapy
 import pandas as pd
 import json
+import random
 from ..items import TutorialItem
 
 headers = {
@@ -30,7 +31,8 @@ class DusharaSpider(scrapy.Spider):
             first_zip_value = row["4"].split(" to ")[0]
             second_zip_value = row["4"].split(" to ")[-1]
             url = 'https://iwfa.com/wp-admin/admin-ajax.php'
-            for zip_code in list(range(int(first_zip_value), int(second_zip_value)))[:10]:
+            codes = list(range(int(first_zip_value), int(second_zip_value)))
+            for zip_code in random.sample(codes, 50):
                 yield scrapy.FormRequest(
                     url=url,
                     formdata={"lat": "0", "long": "0", "zip": str(zip_code), "nonce": "c47ae0f2e4", "action": "find_dealers"},
